@@ -9,7 +9,7 @@ public:
 	virtual uintptr_t getEntityRegistry2();
 
 private:
-	char pad_0x0000[0xD0]; //0x0000
+	char pad_0x0000[0xD8]; //0x0000 // Updated timer offset
 public:
 	float* timer; //0x00D8 
 	float* renderTimer;
