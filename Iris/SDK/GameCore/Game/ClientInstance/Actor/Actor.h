@@ -881,7 +881,8 @@ public:
     PlayerInventory* getSupplies()
     {
         uintptr_t address = reinterpret_cast<uintptr_t>(this);
-        return *reinterpret_cast<PlayerInventory**>(address + 0x848);
+        return *reinterpret_cast<PlayerInventory**>(address + 0x7E8); // Updated to 1.20.51
+        // 0x848 1.20.0.1
     }
     RenderPositionComponent* getRenderPositionComponent() {
         using getRenderPositionComponent = RenderPositionComponent * (__cdecl*)(void*, EntityId*);
@@ -916,7 +917,8 @@ public:
     GameMode* getGameMode()
     {
         uintptr_t address = reinterpret_cast<uintptr_t>(this);
-        return *reinterpret_cast<GameMode**>(address + 0xEF8);
+        return *reinterpret_cast<GameMode**>(address + 0xF10); // Updated to 1.20.51
+        // 0xEF8 1.20.0.1
     }
 
     void DisplayClientMessage(const char* msg)
@@ -1071,7 +1073,7 @@ public:
         if (IsBadReadPtr(this, sizeof(Player)))
             return nullptr;
 
-        uintptr_t ptr = (uintptr_t)this + Addresses::actorStateComponent;
+        uintptr_t ptr = (uintptr_t)this + 0x2C8; // Updated to 1.20.51
 
         if (ptr >= range_start || ptr <= 0x1000)
             return nullptr;
@@ -1083,7 +1085,7 @@ public:
 
         if (std::is_same<T, AABBShapeComponent>::value)
         {
-            return *reinterpret_cast<T**>(ptr + 8);
+            return *reinterpret_cast<T**>((uintptr_t)this + 0x2D0); // Updated to 1.20.51
         }
 
         if (std::is_same<T, MovementInterpolatorComponent>::value)
@@ -1105,13 +1107,15 @@ public:
     EntityContext* GetEntityContext()
     {
         uintptr_t address = reinterpret_cast<uintptr_t>(this);
-        return reinterpret_cast<EntityContext*>(address + 8);
+        return reinterpret_cast<EntityContext*>((uintptr_t)this + 0x8); // Updated to 1.20.51
+        // The same offset in 1.20.0.1
     }
 
     Level* GetLevel()
     {
         uintptr_t address = reinterpret_cast<uintptr_t>(this);
-        return *reinterpret_cast<Level**>(address + 0x260);
+        return *reinterpret_cast<Level**>(address + 0x288); // Updated to 1.20.51
+        // 0x260 in 1.20.0.1
     }
 
     float getVerticalSpeed()
@@ -1145,25 +1149,13 @@ public:
         Vector3<float> lastPosition = stateVec->PrevPosition;
         lastPosition.y = 0;
 
-        return (currentPosition.distance(lastPosition)) * (*Game::GetInstance()->getMinecraft()->timer);
+        // i replaced timer 0xD0 to 0xD8 and minecraft from 0xD0 to 0xD8 now timer doesn't work on 1.20.51 idk why
+        return (currentPosition.distance(lastPosition)) * /*(*Game::GetInstance()->getMinecraft()->timer)*/ 20;
     }
 
     Vector3<float> GetPosition(bool tpReady = true)
     {
-        DirectPlayerMovementProxy* proxy = getMovementProxy();
-
-        if (!proxy)
-            return { 0,0,0 };
-
-        Vector3<float> pos = proxy->getAABB()->lower;
-
-        if (tpReady)
-        {
-            pos.x += proxy->getAABBDim().x / 2;
-            pos.z += proxy->getAABBDim().x / 2;
-        }
-
-        return pos;
+        return stateVector->Position; // Updated to 1.20.51
     }
 
     Vector3<int> GetBlockPosition()
@@ -1241,6 +1233,12 @@ public:
 
         return VTable[index];
     }
+public:
+    BUILD_ACCESS(this, struct EntityContext, entityContext, 0x8); // Updated to 1.20.51
+    BUILD_ACCESS(this, class EntityLocation*, location, 0x2A0); // Updated to 1.20.51
+    BUILD_ACCESS(this, StateVectorComponent*, stateVector, 0x2C8); // Updated to 1.20.51
+    BUILD_ACCESS(this, AABBShapeComponent*, aabbShape, 0x2D0); // Updated to 1.20.51
+    BUILD_ACCESS(this, MovementInterpolatorComponent*, moveInterpolator, 0x2C8 + 16); // Updated to 1.20.51
 };
 
 static std::map<__int32, uintptr_t> __o__entitylist = std::map<__int32, uintptr_t>();
