@@ -71,8 +71,10 @@ class KeymapHook : public FuncHook
 public:
     bool Initialize() override
     {
-        void* keymapAddr = findSig(xorstr_("48 83 EC 48 ? ? C1 4C 8D"));
-        void* mousemapAddr = findSig(xorstr_("48 8B C4 48 89 58 ? 48 89 68 ? 48 89 70 ? 57 41 54 41 55 41 56 41 57 48 83 EC ? 44 0F B7 BC 24"));
+        void* keymapAddr = findSig(xorstr_("48 ? ? 48 ? ? ? 4C 8D 05 ? ? ? ? 89")); // Updated to 1.20.51
+        // 48 83 EC 48 ? ? C1 4C 8D in 1.20.0.1
+        void* mousemapAddr = findSig(xorstr_("48 8b c4 48 89 58 ? 48 89 68 ? 48 89 70 ? 57 41 54 41 55 41 56 41 57 48 83 ec ? 44 0f b7 bc 24")); // Updated to 1.20.51
+        // 48 8B C4 48 89 58 ? 48 89 68 ? 48 89 70 ? 57 41 54 41 55 41 56 41 57 48 83 EC ? 44 0F B7 BC 24 in 1.20.0.1
 
         if (not HookFunction(keymapAddr, (void*)&SendKeyboardKeyDetour, &__o__SendKeyboardKey, "Keyboard"))
             return false;
