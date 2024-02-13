@@ -1,4 +1,5 @@
 #pragma once
+// Lmao
 
 void DrawTextDetour(
     MinecraftUIRenderContext* _this,
