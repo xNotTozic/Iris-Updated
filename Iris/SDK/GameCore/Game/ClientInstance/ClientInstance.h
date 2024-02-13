@@ -6,6 +6,8 @@
 #include "LevelRender.h"
 #include "../../Struct/GLMatrix.h"
 
+#define getLocalPlayerIndex 28 // Updated to 1.20.51
+
 class ClientInstance
 {
 private:
@@ -20,7 +22,8 @@ public:
 public:
 	Player* getLocalPlayer()
 	{
-		return CallVFunc<27, Player*>(this);
+		return (class Player*)CallVFunc<getLocalPlayerIndex, Player*>(this); // Updated to 1.20.51
+		//return CallVFunc<27, Player*>(this); // 1.20.0.1
 	}
 
 	MoveInputHandler* getMoveInputHandler()
@@ -38,45 +41,59 @@ public:
 		return *reinterpret_cast<LoopbackPacketSender**>((uintptr_t)this + 0xF0);
 	}
 
+	LoopbackPacketSender* getPacketSender()
+	{
+		return *reinterpret_cast<LoopbackPacketSender**>((uintptr_t)this + 0xF0); // Updated to 1.20.51
+		// The same offset on 1.20.0.1
+	}
+
 	void grabCursor()
 	{
-		return CallVFunc<304, void>(this);
+		return CallVFunc<326, void>(this); // Updated to 1.20.51
+		//return CallVFunc<304, void>(this); 1.20.0.1
 	}
 
 	void releaseCursor()
 	{
-		return CallVFunc<305, void>(this);
+		return CallVFunc<327, void>(this); // Updated to 1.20.51
+		//return CallVFunc<305, void>(this); 1.20.0.1
 	}
 
 	void refocusCursor()
 	{
-		return CallVFunc<306, void>(this);
+		return CallVFunc<328, void>(this); // Updated to 1.20.51
+		//return CallVFunc<306, void>(this); 1.20.0.1
 	}
 
 	Minecraft* getMinecraft()
 	{
-		return *reinterpret_cast<Minecraft**>((uintptr_t)this + 0xD0);
+		return *reinterpret_cast<Minecraft**>((uintptr_t)this + 0xD0); // Updated to 1.20.51
+		//return *reinterpret_cast<Minecraft**>((uintptr_t)this + 0xD0); 1.20.0.1
 	}
 
 	GuiData* getGuiData()
 	{
-		return *reinterpret_cast<GuiData**>((uintptr_t)this + 0x510);
+		return *reinterpret_cast<GuiData**>((uintptr_t)this + 0x560); // Updated to 1.20.51
+		//return *reinterpret_cast<GuiData**>((uintptr_t)this + 0x510); 1.20.0.1
 	}
 
 	LevelRender* getLevelRender()
 	{
 		uintptr_t address = reinterpret_cast<uintptr_t>(this);
-		return *reinterpret_cast<LevelRender**>(address + 0xE0);
+		return *reinterpret_cast<LevelRender**>(address + 0xE0); // Updated to 1.20.51
+		// The same offset on 1.20.0.1
 	}
 
 	float* getFovX()
 	{
-		return reinterpret_cast<float*>((uintptr_t)(this) + 0x6A0);
+		return reinterpret_cast<float*>((uintptr_t)(this) + 0x6F8); // Updated to 1.20.51
+		//return reinterpret_cast<float*>((uintptr_t)(this) + 0x6A0); 1.20.0.1
 	};
 
 	float* getFovY()
 	{
-		return reinterpret_cast<float*>((uintptr_t)(this) + 0x6B4);
+		return reinterpret_cast<float*>((uintptr_t)(this) + 0x70C); // Updated to 1.20.51
+		//return reinterpret_cast<float*>((uintptr_t)(this) + 0x6B4); 1.20.0.1
 	};
 
 	Vector2<float> getFov()
