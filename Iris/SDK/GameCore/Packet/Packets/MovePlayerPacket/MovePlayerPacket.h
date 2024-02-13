@@ -41,7 +41,9 @@ public:
     void init()
     {
         static void* sig = nullptr;
-        if (!sig) sig = findSig("48 8D 05 ? ? ? ? 48 89 42 08 48 8B 47 30");
+        if (!sig) sig = findSig("48 8D 05 ? ? ? ? 48 89 43 08 48 8B"); // Updated to 1.20.51
+        // 48 8D 05 ? ? ? ? 48 89 43 08 48 8B 46 30 48 89 43 38 F2 0F 10 46 ? F2 0F 11 43 ? 8B 46 40 89 43 48 F2 0F 10 46 ? F2 0F 11 43 ? 8B 46 4C 
+        // 48 8D 05 ? ? ? ? 48 89 42 08 48 8B 47 30 in 1.20.0.1
         this->setVTable<MovePlayerPacket>(reinterpret_cast<uintptr_t*>(sig));
     }
 };
