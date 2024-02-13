@@ -47,7 +47,7 @@ public:
         {
             if (TimeUtil::hasTimeElapsed("gmTick", 50, true))
             {
-                MovePlayerPacket pkt(Game::GetLocalPlayer(), Game::GetLocalPlayer()->getPosition(), Game::GetLocalPlayer()->getMovementProxy()->getRotation(), Game::GetLocalPlayer()->getMovementProxy()->isOnGround());
+                MovePlayerPacket pkt(Game::GetLocalPlayer(), Game::GetLocalPlayer()->GetPosition(), Game::GetLocalPlayer()->getMovementProxy()->getRotation(), Game::GetLocalPlayer()->getMovementProxy()->isOnGround());
                 pkt.mode = TELEPORT;
                 for (int i = 0; i < 10; i++)
                 {

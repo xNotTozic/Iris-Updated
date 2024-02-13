@@ -27,10 +27,11 @@ public:
         if (!Game::GetInstance()->WorldToScreen(renderPos, output1))
             return;
 
-        if (!entity->getNameTag())
-            return;
+        //if (!entity->getNameTag())
+            //return;
 
-        std::string user(entity->getNameTag()->getText());
+        //std::string user(entity->getNameTag()->getText());
+        std::string user("Lmao"); // no names for now
         user = Util::sanitizeName(user);
 
         float textWidth = ImRenderUtil::getTextWidth(&user, 1);

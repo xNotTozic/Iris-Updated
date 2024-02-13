@@ -56,19 +56,19 @@ public:
                 moveVec.y = sin(calculatedPitch) * 0.5f;
                 moveVec.z = sin(calculatedYaw) * cos(calculatedPitch) * 0.5f;
 
-                Vector3<float> playerPos = player->getPosition().add(moveVec);
+                Vector3<float> playerPos = player->GetPosition().add(moveVec);
                 Vector3<float> entityPosition;
 
                 switch (targetMode) {
                 case 0: // Single
-                    entityPosition = Game::TargetLists::infAuraList[0]->getPosition();
+                    entityPosition = Game::TargetLists::infAuraList[0]->GetPosition();
                     PathToTeleport(playerPos, entityPosition, teleportIncrement);
                     gm->attack(Game::TargetLists::infAuraList[0]);
                     PathToTeleport(entityPosition, playerPos, teleportIncrement);
                     break;
                 case 1:// Multi
                     for (int i = 0; i < Game::TargetLists::infAuraList.size(); i++) {
-                        entityPosition = Game::TargetLists::infAuraList[i]->getPosition();
+                        entityPosition = Game::TargetLists::infAuraList[i]->GetPosition();
                         PathToTeleport(playerPos, entityPosition, teleportIncrement);
                         gm->attack(Game::TargetLists::infAuraList[i]);
                         PathToTeleport(entityPosition, playerPos, teleportIncrement);
@@ -98,7 +98,7 @@ public:
         if (!act) return;
         if (act == Game::GetLocalPlayer()) return;
         if (act->IsBadPtr()) return;
-        if (raytrace && !Game::GetLocalPlayer()->canSee(*act)) return;
+        if (raytrace /* && !Game::GetLocalPlayer()->canSee(*act)*/) return;
         if (getModuleByName("AntiBot")->isEnabled() && act->isBot()) return;
 
         float distance = act->GetPosition().distance(Game::GetLocalPlayer()->GetPosition());

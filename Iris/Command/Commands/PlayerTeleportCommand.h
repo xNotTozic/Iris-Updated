@@ -23,10 +23,10 @@ public:
         if (entDims.x != 0.6f || entDims.y != 1.8f)
             return;
 
-        if (strcmp(ent->getNameTag()->getText(), _args[1].c_str()) == 0)
-        {
-            pos = ent->GetPosition();
-        }
+        //if (strcmp(ent->getNameTag()->getText(), _args[1].c_str()) == 0)
+        //{
+            //pos = ent->GetPosition();
+        //}
     }
 
     bool execute(std::vector<std::string> cmd) override

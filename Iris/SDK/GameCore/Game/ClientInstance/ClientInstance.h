@@ -38,11 +38,6 @@ public:
 
 	LoopbackPacketSender* getPacketSender()
 	{
-		return *reinterpret_cast<LoopbackPacketSender**>((uintptr_t)this + 0xF0);
-	}
-
-	LoopbackPacketSender* getPacketSender()
-	{
 		return *reinterpret_cast<LoopbackPacketSender**>((uintptr_t)this + 0xF0); // Updated to 1.20.51
 		// The same offset on 1.20.0.1
 	}
