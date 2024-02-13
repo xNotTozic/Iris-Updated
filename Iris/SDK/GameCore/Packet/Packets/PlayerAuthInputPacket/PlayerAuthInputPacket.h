@@ -42,7 +42,9 @@ public:
 	void init()
 	{
 		static void* sig = nullptr;
-		if (!sig) sig = findSig("48 8D 0D ? ? ? ? 0F 57 C0 0F 11 00 C7 40 ? ? ? ? ? C7 40 ? ? ? ? ? 48 8D 05 ? ? ? ? 48 89 02 33 C0 48 89 42 28 48 89 4A 10");
+		if (!sig) sig = findSig("48 8D 05 ? ? ? ? 48 8B D9 48 89 01 48 81 C1 ? ? ? ? E8 ? ? ? ? 48 8B"); // Updated to 1.20.51
+		//                       48 8D 05 ? ? ? ? 48 8B D9 48 89 01 48 81 C1 ? ? ? ? E8 ? ? ? ? 48 8B BB ? ? ? ? 48 85 FF 74 29 48 8D 4F 30 E8 ? ? ? ? 48 8D 4F 10 
+		// 48 8D 0D ? ? ? ? 0F 57 C0 0F 11 00 C7 40 ? ? ? ? ? C7 40 ? ? ? ? ? 48 8D 05 ? ? ? ? 48 89 02 33 C0 48 89 42 28 48 89 4A 10 in 1.20.0.1
 		this->setVTable<PlayerAuthInputPacket>(reinterpret_cast<uintptr_t*>(sig));
 	}
 };
