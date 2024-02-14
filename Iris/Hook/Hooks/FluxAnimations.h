@@ -26,7 +26,7 @@ public:
         // Player::getItemUseDuration(void)
 
         void* addr = findSig(xorstr_("8b 81 ? ? ? ? c3 cc cc cc cc cc cc cc cc cc 48 89 6c 24"));
-        if (!HookFunction(addr, (void*)&getCurrentSwingDurationDetour, &oSwingSpeed, xorstr_("Flux"))) {
+        if (!HookFunction(addr, (void*)&getItemUseDurationDetour, &oFluxSwing, xorstr_("Flux"))) {
             return false;
         }
         return true;
