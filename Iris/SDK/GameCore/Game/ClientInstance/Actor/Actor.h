@@ -406,7 +406,8 @@ public:
     GameMode* getGameMode()
     {
         uintptr_t address = reinterpret_cast<uintptr_t>(this);
-        return *reinterpret_cast<GameMode**>(address + 0xF10); // Updated to 1.20.51
+        return *reinterpret_cast<GameMode**>(address + 0xF18); // Updated to 1.20.61
+        // 0xF10 1.20.51
         // 0xEF8 1.20.0.1
     }
 
@@ -525,44 +526,14 @@ public:
         return false;
     }
 
-    /*
-    
-    std::string getNameTag()
-    {
-        if (!this || IsBadPtr())
-            return std::string("");
-
-        if (Game::GetLocalPlayer()->GetPosition().distance(GetPosition()) < 320)
-            return std::string("");
-
-        const char* ptr = reinterpret_cast<const char*>(this + 0x1CC0);
-
-        if (ptr == nullptr || reinterpret_cast<uintptr_t>(ptr) >= range_start)
-            return std::string("");
-
-        int length = 0;
-        std::string result;
-        while (*ptr != '\0')
-        {
-            result += *ptr;
-            ptr++;
-            length++;
-
-            if (length >= 24)
-                return std::string("");
-        }
-        return result;
-    }
-
-    */
-
     template<typename T>
     T* try_get()
     {
         if (IsBadReadPtr(this, sizeof(Player)))
             return nullptr;
 
-        uintptr_t ptr = (uintptr_t)this + 0x2C8; // Updated to 1.20.51
+        uintptr_t ptr = (uintptr_t)this + 0x2D0; // Updated to 1.20.61
+        // 0x2D0 in 1.20.51
 
         if (ptr >= range_start || ptr <= 0x1000)
             return nullptr;
@@ -574,7 +545,9 @@ public:
 
         if (std::is_same<T, AABBShapeComponent>::value)
         {
-            return *reinterpret_cast<T**>((uintptr_t)this + 0x2D0); // Updated to 1.20.51
+            // The iris homeless way
+            return *reinterpret_cast<T**>((uintptr_t)this + 0x2D0 + 8); // Updated to 1.20.61
+            // 0x2D0 in 1.20.51
         }
 
         if (std::is_same<T, MovementInterpolatorComponent>::value)
@@ -596,14 +569,16 @@ public:
     EntityContext* GetEntityContext()
     {
         uintptr_t address = reinterpret_cast<uintptr_t>(this);
-        return reinterpret_cast<EntityContext*>((uintptr_t)this + 0x8); // Updated to 1.20.51
+        return reinterpret_cast<EntityContext*>((uintptr_t)this + 0x8); // Updated to 1.20.61
+        // The same offset in 1.20.51
         // The same offset in 1.20.0.1
     }
 
     Level* GetLevel()
     {
         uintptr_t address = reinterpret_cast<uintptr_t>(this);
-        return *reinterpret_cast<Level**>(address + 0x288); // Updated to 1.20.51
+        return *reinterpret_cast<Level**>(address + 0x290); // Updated to 1.20.61
+        // 0x288 in 1.20.51
         // 0x260 in 1.20.0.1
     }
 
@@ -723,11 +698,11 @@ public:
         return VTable[index];
     }
 public:
-    BUILD_ACCESS(this, struct EntityContext, entityContext, 0x8); // Updated to 1.20.51
-    BUILD_ACCESS(this, class EntityLocation*, location, 0x2A0); // Updated to 1.20.51
-    BUILD_ACCESS(this, StateVectorComponent*, stateVector, 0x2C8); // Updated to 1.20.51
-    BUILD_ACCESS(this, AABBShapeComponent*, aabbShape, 0x2D0); // Updated to 1.20.51
-    BUILD_ACCESS(this, MovementInterpolatorComponent*, moveInterpolator, 0x2C8 + 16); // Updated to 1.20.51
+    BUILD_ACCESS(this, struct EntityContext, entityContext, 0x8); // Updated to 1.20.61
+    BUILD_ACCESS(this, class EntityLocation*, location, 0x2A0); // Updated to 1.20.61
+    BUILD_ACCESS(this, StateVectorComponent*, stateVector, 0x2D0); // Updated to 1.20.61
+    BUILD_ACCESS(this, AABBShapeComponent*, aabbShape, 0x2D8); // Updated to 1.20.61
+    BUILD_ACCESS(this, MovementInterpolatorComponent*, moveInterpolator, 0x2D0 + 16); // Updated to 1.20.61
 };
 
 static std::map<__int32, uintptr_t> __o__entitylist = std::map<__int32, uintptr_t>();
