@@ -84,7 +84,7 @@ public:
 
             // (Actor actor, Vector3<float> position, Vector2<float> rot, bool onGround)
             MovePlayerPacket lbPkt(player, player->GetPosition(), player->getMovementProxy()->getRotation(), false);
-            instance->getPacketSender()->sendToServer(&lbPkt);
+            instance->getLoopbackPacketSender()->sendToServer(&lbPkt);
 
             minecraft->setTimerSpeed(timerSpeed);
 

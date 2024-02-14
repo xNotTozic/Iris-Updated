@@ -133,7 +133,7 @@ void SetupAndRenderDetour(
             "DrawString"
         );
 
-        auto Loopback_VTable = *(uintptr_t**)ctx->ClientInstance->getPacketSender();
+        auto Loopback_VTable = *(uintptr_t**)ctx->ClientInstance->getLoopbackPacketSender();
 
         HookFunction(
             (void*)Loopback_VTable[2],

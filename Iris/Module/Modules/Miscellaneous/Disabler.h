@@ -34,7 +34,7 @@ public:
     void onEvent(UpdateTickEvent* event) override
     {
         ClientInstance* instance = Game::GetInstance();
-        LoopbackPacketSender* sender = instance->getPacketSender();
+        LoopbackPacketSender* sender = instance->getLoopbackPacketSender();
 
         if (!sender || !instance || !Game::GetLocalPlayer())
         {

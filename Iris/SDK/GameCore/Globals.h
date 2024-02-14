@@ -162,7 +162,10 @@ namespace Game
 		Core::Player = instance->getLocalPlayer();
 	}
 
-	Player* GetLocalPlayer() { return Core::Player; } // so people dont WINGE about it
+	Player* GetLocalPlayer() { 
+		//Game::GetInstance()->getLocalPlayer();
+		return Core::Player; 
+	} // so people dont WINGE about it
 	Mob* getMob() { return Core::Mob; } // so people dont WINGE about it
 	GameMode* GetGameMode() { return Core::GameMode; }
 	ClientInstance* GetInstance() { return Core::ClientInstance; }

@@ -62,7 +62,7 @@ public:
                 if (prevSlot != n) {
                     if (selectMode == 1) {
                         MobEquipmentPacket pkt(Game::GetLocalPlayer()->getRuntimeIDComponent()->runtimeID, n, n);
-                        Game::GetInstance()->getPacketSender()->sendToServer(&pkt);
+                        Game::GetInstance()->getLoopbackPacketSender()->sendToServer(&pkt);
                     };
                     supplies->hotbarSlot = n;
                 };

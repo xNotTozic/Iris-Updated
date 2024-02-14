@@ -23,7 +23,7 @@ public:
         if (switchMode == 1)
         {
             MovePlayerPacket lbPkt(player, player->GetPosition(), player->getMovementProxy()->getRotation(), false);
-            Game::GetInstance()->getPacketSender()->sendToServer(&lbPkt);
+            Game::GetInstance()->getLoopbackPacketSender()->sendToServer(&lbPkt);
         }
     }
 

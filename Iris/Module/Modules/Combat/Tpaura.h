@@ -112,7 +112,7 @@ public:
         Player* player = Game::GetLocalPlayer();
         DirectPlayerMovementProxy* mProxy = player->getMovementProxy();
         ClientInstance* instance = Game::GetInstance();
-        LoopbackPacketSender* sender = instance->getPacketSender();
+        LoopbackPacketSender* sender = instance->getLoopbackPacketSender();
 
         if (!sender or !instance) {
             return;

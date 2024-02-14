@@ -90,7 +90,7 @@ public:
 
     void onEvent(PacketSendingEvent* event) override
     {
-        if (!Game::GetLocalPlayer() ||!Game::GetInstance()->getPacketSender() || !rotations || Game::TargetLists::auraList.empty())
+        if (!Game::GetLocalPlayer() ||!Game::GetInstance()->getLoopbackPacketSender() || !rotations || Game::TargetLists::auraList.empty())
         {
             return;
         }

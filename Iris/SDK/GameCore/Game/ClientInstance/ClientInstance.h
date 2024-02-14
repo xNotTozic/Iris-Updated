@@ -36,11 +36,11 @@ public:
 		return CallVFunc<26, BlockSource*>(this);
 	}
 
-	LoopbackPacketSender* getPacketSender()
+	/*LoopbackPacketSender* getPacketSender()
 	{
 		return *reinterpret_cast<LoopbackPacketSender**>((uintptr_t)this + 0xF0); // Updated to 1.20.51
 		// The same offset on 1.20.0.1
-	}
+	}*/
 
 	void grabCursor()
 	{
@@ -60,7 +60,7 @@ public:
 		//return CallVFunc<306, void>(this); 1.20.0.1
 	}
 
-	Minecraft* getMinecraft()
+	/*Minecraft* getMinecraft()
 	{
 		return *reinterpret_cast<Minecraft**>((uintptr_t)this + 0xD0); // Updated to 1.20.51
 		//return *reinterpret_cast<Minecraft**>((uintptr_t)this + 0xD0); 1.20.0.1
@@ -70,7 +70,7 @@ public:
 	{
 		return *reinterpret_cast<GuiData**>((uintptr_t)this + 0x560); // Updated to 1.20.51
 		//return *reinterpret_cast<GuiData**>((uintptr_t)this + 0x510); 1.20.0.1
-	}
+	}*/
 
 	LevelRender* getLevelRender()
 	{
@@ -156,4 +156,13 @@ public:
 
 		return true;
 	}
+public:
+	BUILD_ACCESS(this, class LoopbackPacketSender*, LoopbackPacketSender, 0xF0); // Updated to 1.20.51
+	BUILD_ACCESS(this, class MinecraftGame*, MinecraftGame, 0xC8); // Updated to 1.20.51
+	BUILD_ACCESS(this, class Minecraft*, Minecraft, 0xD0); // Updated to 1.20.51
+	BUILD_ACCESS(this, class GuiData*, GuiData, 0x560); // Updated to 1.20.51
+
+	BUILD_ACCESS(this, class LevelRenderer*, levelRenderer, 0xE0); // Updated to 1.20.51
+public:
+	AS_FIELD(class Player*, LocalPlayer, getLocalPlayer);
 };
