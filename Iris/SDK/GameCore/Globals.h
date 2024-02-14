@@ -115,6 +115,7 @@ namespace Game
 		static inline float HotbarSpeed = 15.f;
 		static inline float SwingSpeed = 20;
 		static inline float FieldMultiplier = 1.1f;
+		static inline bool ShouldFlux = true;
 		static inline bool ApplyField = false;
 
 		static inline float headYaw = 0.f;

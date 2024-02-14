@@ -269,5 +269,6 @@
     <ClInclude Include="Hook\Hooks\RakPeer\RakPeerHooks.h" />
     <ClInclude Include="Module\Modules\Miscellaneous\NetSkip.h" />
     <ClInclude Include="Hook\Hooks\Camera\CameraHooks.h" />
+    <ClInclude Include="Hook\Hooks\FluxAnimations.h" />
   </ItemGroup>
 </Project>

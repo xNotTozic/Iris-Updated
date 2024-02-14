@@ -126,6 +126,7 @@
     <ClInclude Include="Hook\Hooks\Camera\CameraHooks.h" />
     <ClInclude Include="Hook\Hooks\DirectX\DirectXHook.h" />
     <ClInclude Include="Hook\Hooks\FieldHook.h" />
+    <ClInclude Include="Hook\Hooks\FluxAnimations.h" />
     <ClInclude Include="Hook\Hooks\onUpdateHook.h" />
     <ClInclude Include="Hook\Hooks\RakPeer\RakPeerHooks.h" />
     <ClInclude Include="Hook\Hooks\Unused\GammaTick.h" />

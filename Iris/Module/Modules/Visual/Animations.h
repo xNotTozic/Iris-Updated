@@ -8,6 +8,7 @@ public:
     {
         addEnum("Animation", "Change your swing speed", { "1.7" }, &mode);
         addSlider("Swing Speed", "Change your swing speed", &Game::Core::SwingSpeed, 1, 50);
+        addBool("Flux", "idk if this works", &Game::Core::ShouldFlux);
     }
 
     int mode = 0;

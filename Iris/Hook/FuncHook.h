@@ -22,6 +22,7 @@ public:
 #include "Hooks/SendChatMessage.h"
 #include "Hooks/onUpdateHook.h"
 #include "Hooks/FieldHook.h"
+#include "Hooks/FluxAnimations.h"
 #include "Hooks/RakPeer/RakPeerHooks.h"
 #include "Hooks/Camera/CameraHooks.h"
 
@@ -36,6 +37,7 @@ void InitializeHooks()
         &KeymapHook::Instance(),
         &RenderContextHook::Instance(),
         &Dx12Hook::Instance(),
+        &FluxHook::Instance(),
         &ActorHook::Instance(),
         //&SplashHook::Instance(),
         &ViewbobHook::Instance(),
