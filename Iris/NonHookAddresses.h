@@ -36,7 +36,8 @@ namespace Addresses
 
 		DisplayClientMessageAddr = findOffset(xorstr_("48 89 5C 24 08 48 89 74 24 10 57 48 83 EC 40 48 8B FA 48 8B 89"), xorstr_("DisplayClientMessage"));
 		TeleportToAddr = findOffset(xorstr_("48 89 5C 24 18 55 56 57 48 81 EC ? ? ? ? ? ? B4 24 ? ? ? ? 48 8B 05 ? ? ? ? 48 33 C4 48 89 84 24 ? ? ? ? 41"), xorstr_("TeleportTo"));
-		getplayerAddr = findOffset(xorstr_("48 81 C1 ?? ?? ?? ?? E9 ?? ?? ?? ?? CC CC CC CC 40 53 48 83 EC 20 48 8B 01"), xorstr_("GetLocalPlayer"));
+		getplayerAddr = findOffset(xorstr_("48 8d 05 ? ? ? ? 48 89 01 b8 ? ? ? ? 8d 50 ? 44 8d 48 ? 44 8d 40 ? 66 89 44 24 ? e8 ? ? ? ? 48 8b 8b"), xorstr_("GetLocalPlayer")); // Updated to 1.20.51
+		// 1.20.0.1 48 81 C1 ?? ?? ?? ?? E9 ?? ?? ?? ?? CC CC CC CC 40 53 48 83 EC 20 48 8B 01
 		getActorAddr = findOffset(xorstr_("48 8D 05 ? ? ? ? 48 89 01 49 8B 00 48 89 41 ?"), "GetActor");
 		getBlocksource = findOffset(xorstr_("48 83 EC 58 48 8B 05 ? ? ? ? 48 33 C4 48 89 44 24 ? 48 8D 91 ? ? ? ? 48 8D 4C 24 ? E8 ? ? ? ? 80 7C 24 ? ? 74 45"), xorstr_("GetBlockSource"));
 		getBlock = findOffset(xorstr_("48 89 5C 24 10 57 48 83 EC 20 48 8B F9 48 8B DA 8B"), xorstr_("GetBlock"));
