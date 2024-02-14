@@ -21,7 +21,7 @@ public:
         if (!player)
             return;
 
-        Vector3<int> pos = player->GetBlockPosition();
+        Vector3<float> pos = player->stateVector->Position;
 
         std::ostringstream oss;
         oss.precision(2);
