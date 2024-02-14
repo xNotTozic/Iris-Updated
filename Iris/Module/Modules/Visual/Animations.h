@@ -25,7 +25,7 @@ public:
 
         if (GetAsyncKeyState(VK_RBUTTON) && Game::GetInstance()->mcGame->canUseMoveKeys() || Game::Iris::ShouldBlock) // RenderUtil::GetCTX()->ClientInstance->mcGame->CanUseKeys
         {
-            nopBytes((unsigned char*)fluxSwing, 6);
+            //nopBytes((unsigned char*)fluxSwing, 6);
 
             matrix = glm::translate<float>(matrix, glm::vec3(0.42222223281, 0.0, -0.16666666269302368));
             matrix = glm::translate<float>(matrix, glm::vec3(-0.1f, 0.15f, -0.2f));
@@ -36,7 +36,7 @@ public:
         }
         else
         {
-            patchBytes((unsigned char*)((uintptr_t)fluxSwing), (unsigned char*)"\x0F\x84\xBD\x04\x00\x00", 6);
+            //patchBytes((unsigned char*)((uintptr_t)fluxSwing), (unsigned char*)"\x0F\x84\xBD\x04\x00\x00", 6);
         }
     }
 };
