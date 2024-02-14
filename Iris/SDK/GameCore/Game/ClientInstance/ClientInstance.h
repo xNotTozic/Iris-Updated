@@ -6,6 +6,8 @@
 #include "LevelRender.h"
 #include "../../Struct/GLMatrix.h"
 
+// Test shit
+
 #define getLocalPlayerIndex 28 // Updated to 1.20.51
 
 class ClientInstance
