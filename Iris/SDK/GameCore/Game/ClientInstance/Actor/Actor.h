@@ -375,7 +375,8 @@ public:
     }
     RenderPositionComponent* getRenderPositionComponent() {
         using getRenderPositionComponent = RenderPositionComponent * (__cdecl*)(void*, EntityId*);
-        static auto func = reinterpret_cast<getRenderPositionComponent>(findSig(xorstr_("40 53 48 83 EC ? 48 8B DA BA 6E F3 E8 D4")));
+        static auto func = reinterpret_cast<getRenderPositionComponent>(findSig(xorstr_("40 53 48 83 EC 20 48 8B DA BA 6E F3 E8 D4"))); // Updated to 1.20.51
+        //40 53 48 83 EC ? 48 8B DA BA 6E F3 E8 D4")));
         auto registryBase = *reinterpret_cast<void**>(this->GetEntityContext()->registry);
         return func(registryBase, &this->GetEntityContext()->entityId);
     }
