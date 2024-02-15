@@ -370,7 +370,8 @@ public:
     PlayerInventory* getSupplies()
     {
         uintptr_t address = reinterpret_cast<uintptr_t>(this);
-        return *reinterpret_cast<PlayerInventory**>(address + 0x7E8); // Updated to 1.20.51
+        return *reinterpret_cast<PlayerInventory**>(address + 0x7F0); // Updated to 1.20.61
+        // 0x7E8 1.20.51
         // 0x848 1.20.0.1
     }
     RenderPositionComponent* getRenderPositionComponent() {
@@ -613,13 +614,13 @@ public:
         Vector3<float> lastPosition = stateVec->PrevPosition;
         lastPosition.y = 0;
 
-        // i replaced timer 0xD0 to 0xD8 and minecraft from 0xD0 to 0xD8 now timer doesn't work on 1.20.51 idk why
+        // i replaced timer 0xD0 to 0xD8 and minecraft from 0xD0 to 0xD8 now timer doesn't work on 1.20.61 idk why
         return (currentPosition.distance(lastPosition)) * /*(*Game::GetInstance()->getMinecraft()->timer)*/ 20;
     }
 
     Vector3<float> GetPosition(bool tpReady = true)
     {
-        return stateVector->Position; // Updated to 1.20.51
+        return stateVector->Position; // Updated to 1.20.61
     }
 
     Vector3<int> GetBlockPosition()
