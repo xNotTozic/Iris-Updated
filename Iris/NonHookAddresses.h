@@ -13,7 +13,7 @@ namespace Addresses
 		{
 			uiMaterial = findOffset(xorstr_("4C 8D 05 ?? ?? ?? ?? 48 8B D3 48 8B CF 48 8B 5C 24 ?? 0F 28 7C 24 ?? 44 0F 28 44 24 ?? 48"), xorstr_("UIMaterial"));
 			tess_Vertex = findOffset(xorstr_("40 57 48 81 ec ? ? ? ? 0f 29 7C 24"), xorstr_("TessVertex"));
-			tess_Begin = findOffset(xorstr_("48 89 5c 24 ? 55 48 83 ec ? 80 b9 ? ? ? ? ? 45 0f b6 d1"), xorstr_("TessBegin"));
+			tess_Begin = findOffset(xorstr_("48 89 5c 24 ? 55 48 83 ec ? 80 b9"), xorstr_("TessBegin")); // updated to 1.20.60 i think, doing more soon...
 			renderMesh = findOffset(xorstr_("40 55 53 56 57 41 56 48 8d ac 24 ? ? ? ? 48 81 ec ? ? ? ? 49 8b f0"), xorstr_("RenderMesh"));
 		}
 	}
