@@ -83,13 +83,15 @@ public:
 
 	float* getFovX()
 	{
-		return reinterpret_cast<float*>((uintptr_t)(this) + 0x6F8); // Updated to 1.20.51
+		return reinterpret_cast<float*>((uintptr_t)(this) + 0x6F0); // Updated to 1.20.61
+		//return reinterpret_cast<float*>((uintptr_t)(this) + 0x6F8); 1.20.51
 		//return reinterpret_cast<float*>((uintptr_t)(this) + 0x6A0); 1.20.0.1
 	};
 
 	float* getFovY()
 	{
-		return reinterpret_cast<float*>((uintptr_t)(this) + 0x70C); // Updated to 1.20.51
+		return reinterpret_cast<float*>((uintptr_t)(this) + 0x704); // Updated to 1.20.51
+		//return reinterpret_cast<float*>((uintptr_t)(this) + 0x70C); 1.20.51
 		//return reinterpret_cast<float*>((uintptr_t)(this) + 0x6B4); 1.20.0.1
 	};
 
@@ -162,7 +164,7 @@ public:
 	BUILD_ACCESS(this, class LoopbackPacketSender*, LoopbackPacketSender, 0xF0); // Updated to 1.20.51
 	BUILD_ACCESS(this, class MinecraftGame*, MinecraftGame, 0xC8); // Updated to 1.20.51
 	BUILD_ACCESS(this, class Minecraft*, Minecraft, 0xD0); // Updated to 1.20.51
-	BUILD_ACCESS(this, class GuiData*, GuiData, 0x560); // Updated to 1.20.51
+	BUILD_ACCESS(this, class GuiData*, GuiData, 0x558); // Updated to 1.20.51
 
 	BUILD_ACCESS(this, class LevelRenderer*, levelRenderer, 0xE0); // Updated to 1.20.51
 public:
