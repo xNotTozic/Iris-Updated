@@ -35,14 +35,9 @@ public:
 
 	BlockSource* getBlockSource()
 	{
-		return CallVFunc<26, BlockSource*>(this);
+		return CallVFunc<27, BlockSource*>(this); // Updated to 1.20.61
+		//return CallVFunc<26, BlockSource*>(this);
 	}
-
-	/*LoopbackPacketSender* getPacketSender()
-	{
-		return *reinterpret_cast<LoopbackPacketSender**>((uintptr_t)this + 0xF0); // Updated to 1.20.51
-		// The same offset on 1.20.0.1
-	}*/
 
 	void grabCursor()
 	{
@@ -64,18 +59,6 @@ public:
 		//return CallVFunc<328, void>(this); 1.20.51
 		//return CallVFunc<306, void>(this); 1.20.0.1
 	}
-
-	/*Minecraft* getMinecraft()
-	{
-		return *reinterpret_cast<Minecraft**>((uintptr_t)this + 0xD0); // Updated to 1.20.51
-		//return *reinterpret_cast<Minecraft**>((uintptr_t)this + 0xD0); 1.20.0.1
-	}
-
-	GuiData* getGuiData()
-	{
-		return *reinterpret_cast<GuiData**>((uintptr_t)this + 0x560); // Updated to 1.20.51
-		//return *reinterpret_cast<GuiData**>((uintptr_t)this + 0x510); 1.20.0.1
-	}*/
 
 	LevelRender* getLevelRender()
 	{
