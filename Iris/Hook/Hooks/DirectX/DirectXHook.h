@@ -591,8 +591,8 @@ HRESULT D3D12_PresentDetour(IDXGISwapChain3* swapchain, UINT syncInterval, UINT 
         if (!initContext) {
             ImGui::CreateContext();
             ImGui::GetIO().Fonts->AddFontFromMemoryCompressedTTF(ProductSans_compressed_data, ProductSans_compressed_size, 48.f);
-            std::string str = Util::getClientPath() + "Assets\\Icon-1.ttf";
-            ImGui::GetIO().Fonts->AddFontFromFileTTF(str.c_str(), 48.f);
+            //std::string str = Util::getClientPath() + "Assets\\Icon-1.ttf";
+            //ImGui::GetIO().Fonts->AddFontFromFileTTF(str.c_str(), 48.f);
             ImGui::GetIO().Fonts->Build();
         };
 
