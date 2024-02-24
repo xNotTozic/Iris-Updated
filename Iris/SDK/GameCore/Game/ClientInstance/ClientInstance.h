@@ -46,19 +46,22 @@ public:
 
 	void grabCursor()
 	{
-		return CallVFunc<327, void>(this); // Updated to 1.20.51
+		return CallVFunc<327, void>(this); // Updated to 1.20.61
+		//return CallVFunc<326, void>(this); 1.20.51
 		//return CallVFunc<304, void>(this); 1.20.0.1
 	}
 
 	void releaseCursor()
 	{
-		return CallVFunc<328, void>(this); // Updated to 1.20.51
+		return CallVFunc<328, void>(this); // Updated to 1.20.61
+		//return CallVFunc<327, void>(this); 1.20.51
 		//return CallVFunc<305, void>(this); 1.20.0.1
 	}
 
 	void refocusCursor()
 	{
-		return CallVFunc<329, void>(this); // Updated to 1.20.51
+		return CallVFunc<329, void>(this); // Updated to 1.20.61
+		//return CallVFunc<328, void>(this); 1.20.51
 		//return CallVFunc<306, void>(this); 1.20.0.1
 	}
 
@@ -90,7 +93,7 @@ public:
 
 	float* getFovY()
 	{
-		return reinterpret_cast<float*>((uintptr_t)(this) + 0x704); // Updated to 1.20.51
+		return reinterpret_cast<float*>((uintptr_t)(this) + 0x704); // Updated to 1.20.61
 		//return reinterpret_cast<float*>((uintptr_t)(this) + 0x70C); 1.20.51
 		//return reinterpret_cast<float*>((uintptr_t)(this) + 0x6B4); 1.20.0.1
 	};
