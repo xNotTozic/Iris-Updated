@@ -161,10 +161,10 @@ public:
 		return true;
 	}
 public:
-	BUILD_ACCESS(this, class LoopbackPacketSender*, LoopbackPacketSender, 0xF0); // Updated to 1.20.51
-	BUILD_ACCESS(this, class MinecraftGame*, MinecraftGame, 0xC8); // Updated to 1.20.51
-	BUILD_ACCESS(this, class Minecraft*, Minecraft, 0xD0); // Updated to 1.20.51
-	BUILD_ACCESS(this, class GuiData*, GuiData, 0x558); // Updated to 1.20.51
+	BUILD_ACCESS(this, class LoopbackPacketSender*, LoopbackPacketSender, 0xF0); // Updated to 1.20.61
+	BUILD_ACCESS(this, class MinecraftGame*, MinecraftGame, 0xC8); // Updated to 1.20.61
+	BUILD_ACCESS(this, class Minecraft*, Minecraft, 0xD0); // Updated to 1.20.61
+	BUILD_ACCESS(this, class GuiData*, GuiData, 0x558); // Updated to 1.20.61
 
 	BUILD_ACCESS(this, class LevelRenderer*, levelRenderer, 0xE0); // Updated to 1.20.51
 public:
