@@ -1,5 +1,2 @@
-Nothing speacial Iris 1.20.0.1 updated to 1.20.51 ( not fully stable and some modules doesn't function )
-:)
-
-![image](https://github.com/xNotTozic/Iris-Updated/assets/70832788/49f2ffb0-ca5c-45d7-8534-dbea22f32e96)
-
+This is iris 1.20.0.1 a client made my yeemi and srxfiq I was boored and decided to updated it this branch is on 1.20.51 and the other branch is on 1.20.62.
+I am going to stop updating this project and make my own client.
