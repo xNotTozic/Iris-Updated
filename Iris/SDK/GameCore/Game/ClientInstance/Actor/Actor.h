@@ -699,9 +699,9 @@ public:
     BUILD_ACCESS(this, class EntityLocation*, location, 0x2A0); // Updated to 1.20.71
 
 
-    BUILD_ACCESS(this, StateVectorComponent*, stateVector, 0x298); // Updated to 1.20.61
-    BUILD_ACCESS(this, AABBShapeComponent*, aabbShape, 0x2A0); // Updated to 1.20.61
-    BUILD_ACCESS(this, MovementInterpolatorComponent*, moveInterpolator, 0x298 + 16); // Updated to 1.20.61
+    BUILD_ACCESS(this, StateVectorComponent*, stateVector, 0x298); // Updated to 1.20.71
+    BUILD_ACCESS(this, AABBShapeComponent*, aabbShape, 0x2A0); // Updated to 1.20.71
+    BUILD_ACCESS(this, MovementInterpolatorComponent*, moveInterpolator, 0x298 + 16); // Updated to 1.20.71
 };
 
 static std::map<__int32, uintptr_t> __o__entitylist = std::map<__int32, uintptr_t>();

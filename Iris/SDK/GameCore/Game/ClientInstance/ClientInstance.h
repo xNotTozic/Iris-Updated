@@ -8,7 +8,7 @@
 
 // Test shit
 
-#define getLocalPlayerIndex 28 // Updated to 1.20.51
+#define getLocalPlayerIndex 29 // Updated to 1.20.71
 
 class ClientInstance
 {
@@ -41,21 +41,21 @@ public:
 
 	void grabCursor()
 	{
-		return CallVFunc<327, void>(this); // Updated to 1.20.61
+		return CallVFunc<331, void>(this); // Updated to 1.20.61
 		//return CallVFunc<326, void>(this); 1.20.51
 		//return CallVFunc<304, void>(this); 1.20.0.1
 	}
 
 	void releaseCursor()
 	{
-		return CallVFunc<328, void>(this); // Updated to 1.20.61
+		return CallVFunc<332, void>(this); // Updated to 1.20.61
 		//return CallVFunc<327, void>(this); 1.20.51
 		//return CallVFunc<305, void>(this); 1.20.0.1
 	}
 
 	void refocusCursor()
 	{
-		return CallVFunc<329, void>(this); // Updated to 1.20.61
+		return CallVFunc<333, void>(this); // Updated to 1.20.61
 		//return CallVFunc<328, void>(this); 1.20.51
 		//return CallVFunc<306, void>(this); 1.20.0.1
 	}
@@ -150,7 +150,7 @@ public:
 	BUILD_ACCESS(this, class LoopbackPacketSender*, LoopbackPacketSender, 0xF0); // Updated to 1.20.61
 	BUILD_ACCESS(this, class MinecraftGame*, MinecraftGame, 0xC8); // Updated to 1.20.61
 	BUILD_ACCESS(this, class Minecraft*, Minecraft, 0xD0); // Updated to 1.20.61
-	BUILD_ACCESS(this, class GuiData*, GuiData, 0x558); // Updated to 1.20.61
+	BUILD_ACCESS(this, class GuiData*, GuiData, 0x558); // Updated to 1.20.71
 
 	BUILD_ACCESS(this, class LevelRenderer*, levelRenderer, 0xE0); // Updated to 1.20.51
 public:
