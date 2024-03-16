@@ -1,5 +1,5 @@
 #pragma once
-
+//
 class TestCommand : public Command
 {
 public:
