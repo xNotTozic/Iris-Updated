@@ -114,6 +114,12 @@ void SetupAndRenderDetour(
         );
     }
 
+    bool cancelled2 = false;
+
+    UpdateEvent event2{ ctx, screenView };
+    event2.cancelled = &cancelled2;
+    DispatchEvent(&event2);
+
     Game::Setup(ctx->ClientInstance, screenView->deltaTime, screenView->ScreenScale);
 
     auto stuff = *(uintptr_t**)ctx->ClientInstance;
@@ -162,20 +168,12 @@ void SetupAndRenderDetour(
     {
         Game::frameCount++;
 
+        RenderUtil::setCTX(ctx);
+
+
         if (Game::FontRepos::GetClientFont())
         {
-            bool cancelled = false;
-
-            RenderUtil::setCTX(ctx);
-
-            UpdateEvent event{ ctx, screenView };
-            event.cancelled = &cancelled;
-            DispatchEvent(&event);
-
-            if (cancelled == true)
-            {
-                std::cout << "Cant cancel render events from a module (Use RenderingGameMenus boolean)" << std::endl;
-            }
+            
         }
     }
 }
