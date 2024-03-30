@@ -69,63 +69,13 @@ void SetupAndRenderDetour(
         RenderUtil::flushImage(UIColor(255, 255, 255), opacity);
     }
 
-    LayerUpdateEvent event{ screenView };
+    UpdateEvent event{ ctx, screenView };
     event.cancelled = nullptr;
     DispatchEvent(&event);
-
-    if (UILayer::Is(screenView, UILayer::Ingame_ChatScreen))
-        Game::Core::InChat = true;
-
-    if (UILayer::Is(screenView, {
-            UILayer::Ingame_InventoryScreen,
-            UILayer::Ingame_CanMoveScreen
-        }))
-    {
-        Game::Core::InChat = false;
-    }
-
-    // Pre render
-    if (UILayer::IsNot(screenView, {
-            UILayer::Toast_ToastScreen,
-            UILayer::Debug_DebugScreen,
-        }))
-    {
-        if (Game::FontRepos::GetClientFont())
-        {
-            bool cancelled = false;
-
-            BeforeUpdateEvent event{ ctx, screenView };
-            event.cancelled = &cancelled;
-            DispatchEvent(&event);
-
-            if (cancelled == true)
-            {
-                std::cout << xorstr_("Cant cancel render events from a module (Use RenderingGameMenus boolean)") << std::endl;
-            }
-        }
-    }
-
-    if (RenderingGameMenus)
-    {
-        CallFunc<void*, void*, MinecraftUIRenderContext*>(
-            __o__Render,
-            screenView,
-            ctx
-        );
-    }
-
-    bool cancelled2 = false;
-
-    UpdateEvent event2{ ctx, screenView };
-    event2.cancelled = &cancelled2;
-    DispatchEvent(&event2);
 
     Game::Setup(ctx->ClientInstance, screenView->deltaTime, screenView->ScreenScale);
 
     auto stuff = *(uintptr_t**)ctx->ClientInstance;
-
-    auto func = stuff[25];
-    auto func2 = func;
 
     static bool hooked = false;
     if (not hooked)
@@ -139,14 +89,6 @@ void SetupAndRenderDetour(
             "DrawString"
         );
 
-        auto Loopback_VTable = *(uintptr_t**)ctx->ClientInstance->getLoopbackPacketSender();
-
-        HookFunction(
-            (void*)Loopback_VTable[2],
-            (void*)&SendToServerDetour,
-            &__o__SendPacket,
-            "SendToServer"
-        );
         HookFunction(
             (void*)VTable[7],
             (void*)&DrawImageDetour,
@@ -164,18 +106,11 @@ void SetupAndRenderDetour(
         hooked = true;
     }
 
-    if (UILayer::Is(screenView, UILayer::Toast_ToastScreen))
-    {
-        Game::frameCount++;
-
-        RenderUtil::setCTX(ctx);
-
-
-        if (Game::FontRepos::GetClientFont())
-        {
-            
-        }
-    }
+    CallFunc<void*, void*, MinecraftUIRenderContext*>(
+        __o__Render,
+        screenView,
+        ctx
+    );
 }
 
 class RenderContextHook : public FuncHook
