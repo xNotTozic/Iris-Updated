@@ -7,7 +7,7 @@ void SendToServerDetour(LoopbackPacketSender* _this, Packet* packet) {
     event.cancelled = &cancelled;
     DispatchEvent(&event);
 
-    if (packet && packet->instanceOf<PlayerAuthInputPacket>()) {
+    if (packet->getId() == 144) {
         PlayerAuthInputPacket* pkt = (PlayerAuthInputPacket*)packet;
         if (pkt) {
             Game::Core::bodyYaw = pkt->yaw;

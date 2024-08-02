@@ -69,10 +69,6 @@ void SetupAndRenderDetour(
         RenderUtil::flushImage(UIColor(255, 255, 255), opacity);
     }
 
-    UpdateEvent event{ ctx, screenView };
-    event.cancelled = nullptr;
-    DispatchEvent(&event);
-
     Game::Setup(ctx->ClientInstance, screenView->deltaTime, screenView->ScreenScale);
 
     auto stuff = *(uintptr_t**)ctx->ClientInstance;
@@ -103,8 +99,21 @@ void SetupAndRenderDetour(
             "DrawNineslice"
         );
 
+        auto Loopback_VTable = *(uintptr_t**)ctx->ClientInstance->getLoopbackPacketSender();
+
+        HookFunction(
+            (void*)Loopback_VTable[2],
+            (void*)&SendToServerDetour,
+            &__o__SendPacket,
+            "SendToServer"
+        );
+
         hooked = true;
     }
+
+    UpdateEvent event{ ctx, screenView };
+    event.cancelled = nullptr;
+    DispatchEvent(&event);
 
     CallFunc<void*, void*, MinecraftUIRenderContext*>(
         __o__Render,
@@ -118,7 +127,7 @@ class RenderContextHook : public FuncHook
 public:
     bool Initialize() override
     {
-        void* renderAddr = findSig("48 8B C4 48 89 58 ? 55 56 57 41 54 41 55 41 56 41 57 48 8D A8 ? ? ? ? 48 81 EC ? ? ? ? 0F 29 70 ? 0F 29 78 ? 48 8B 05 ? ? ? ? 48 33 C4 48 89 85 ? ? ? ? 4C 8B ? 48 89 54 24 ? 4C"); // Updated to 1.20.61
+        void* renderAddr = findSig("48 8B C4 48 89 58 18 55 56 57 41 54 41 55 41 56 41 57 48 8D A8 ? ? ? ? 48 81 EC ? ? ? ? 0F 29 70 B8 0F 29 78 A8 48 8B 05 ? ? ? ? 48 33 C4 48 89 85 ? ? ? ? 4C 8B FA"); // Updated to 1.20.61
         // 48 8B C4 48 89 58 ? 55 56 57 41 54 41 55 41 56 41 57 48 8D A8 ? ? ? ? 48 81 EC ? ? ? ? 0F 29 70 ? 0F 29 78 ? 48 8B 05 ? ? ? ? 48 33 C4 48 89 85 ? ? ? ? 4C 8B ? 48 89 54 24 ? 4C in 1.20.51
         // 48 8B C4 48 89 58 ? 55 56 57 41 54 41 55 41 56 41 57 48 8D A8 ? ? ? ? 48 81 EC ? ? ? ? 0F 29 ? B8 0F 29 ? A8 48 8B 05 ? ? ? ? 48 33 C4 48 89 85 ? ? ? ? 4C 8B F2 48 89 54 24 ? 4C in 1.20.0.1
         void* uisceneTickAddr = findSig("48 89 5C 24 ? 48 89 74 24 ? 57 48 81 EC ? ? ? ? 48 8B 05 ? ? ? ? 48 33 C4 48 89 84 24 ? ? ? ? 48 8B FA 48 8B D9 B9 ? ? ? ?");

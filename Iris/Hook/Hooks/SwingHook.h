@@ -9,7 +9,7 @@ void* oInterpolatedBodyYaw;
 void* oInterpolatedRotation;
 
 float getInterpolatedHeadYaw(Player* _this, float a1) {
-    if (_this == Game::GetLocalPlayer() && getModuleByName("aura")->isEnabled() && !Game::TargetLists::auraList.empty()) {
+    if (_this == Game::GetLocalPlayer()) {
         Game::Core::easedHeadYaw = Math::wrap(Game::Core::easedHeadYaw, Game::Core::headYaw - 180.f, Game::Core::headYaw + 180.f);
         Game::Core::easedHeadYaw = Math::lerp(Game::Core::easedHeadYaw, Game::Core::headYaw, RenderUtil::getDeltaTime() * 2.07);
         return Game::Core::easedHeadYaw;
@@ -21,7 +21,7 @@ float getInterpolatedHeadYaw(Player* _this, float a1) {
 }
 
 float getInterpolatedBodyYaw(Player* _this, float a1) {
-    if (_this == Game::GetLocalPlayer() && getModuleByName("aura")->isEnabled() && !Game::TargetLists::auraList.empty()) {
+    if (_this == Game::GetLocalPlayer()) {
         Game::Core::easedBodyYaw = Math::wrap(Game::Core::easedBodyYaw, Game::Core::easedHeadYaw - 180.f, Game::Core::easedHeadYaw + 180.f);
         Game::Core::easedBodyYaw = Math::lerp(Game::Core::easedBodyYaw, Game::Core::easedHeadYaw, RenderUtil::getDeltaTime() * 1.04);
         return Game::Core::easedBodyYaw;
@@ -33,7 +33,7 @@ float getInterpolatedBodyYaw(Player* _this, float a1) {
 }
 float* yRot(Player* _this, float* a2, float a3) {
     auto oFunc = CallFunc<float*, Player*, float*, float>(oInterpolatedRotation, _this, a2, a3);
-    if (_this == Game::GetLocalPlayer() && getModuleByName(xorstr_("aura"))->isEnabled() && !Game::TargetLists::auraList.empty()) {
+    if (_this == Game::GetLocalPlayer()) {
         Game::Core::easedPitch = Math::lerp(Game::Core::easedPitch, Game::Core::pitch, RenderUtil::getDeltaTime() * 2.07);
         a2[0] = Game::Core::easedPitch;
         return oFunc;
@@ -64,8 +64,8 @@ int getCurrentSwingDurationDetour(Mob* _this) {
         static bool hooked = false;
         auto vTable = *(uintptr_t**)_this;
         if (!hooked) {
-            HookFunction((void*)vTable[31], (void*)&getInterpolatedHeadYaw, &oInterpolatedHeadYaw, "HeadYaw");
-            HookFunction((void*)vTable[32], (void*)&getInterpolatedBodyYaw, &oInterpolatedBodyYaw, "BodyYaw");
+            HookFunction((void*)vTable[16], (void*)&getInterpolatedHeadYaw, &oInterpolatedHeadYaw, "HeadYaw");
+            HookFunction((void*)vTable[17], (void*)&getInterpolatedBodyYaw, &oInterpolatedBodyYaw, "BodyYaw");
             hooked = true;
         }
     }

@@ -35,20 +35,20 @@ public:
 
 	BlockSource* getBlockSource()
 	{
-		return CallVFunc<27, BlockSource*>(this); // Updated to 1.20.61
+		return CallVFunc<28, BlockSource*>(this); // Updated to 1.20.61
 		//return CallVFunc<26, BlockSource*>(this);
 	}
 
 	void grabCursor()
 	{
-		return CallVFunc<331, void>(this); // Updated to 1.20.61
+		return CallVFunc<332, void>(this); // Updated to 1.20.61
 		//return CallVFunc<326, void>(this); 1.20.51
 		//return CallVFunc<304, void>(this); 1.20.0.1
 	}
 
 	void releaseCursor()
 	{
-		return CallVFunc<332, void>(this); // Updated to 1.20.61
+		return CallVFunc<333, void>(this); // Updated to 1.20.61
 		//return CallVFunc<327, void>(this); 1.20.51
 		//return CallVFunc<305, void>(this); 1.20.0.1
 	}
